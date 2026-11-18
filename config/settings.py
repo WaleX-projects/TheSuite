@@ -181,7 +181,7 @@ FRONTEND_URL_TEST =os.environ.get("FRONTEND_URL_TEST")
 
 #
 # Better than CORS_ALLOW_ALL_ORIGINS=True (more secure)
-CORS_ALLOWED_ORIGINS = [
+"""CORS_ALLOWED_ORIGINS = [
    
     FRONTEND_URL, 
     ATTENDANCE_APP_URL_TEST,
@@ -189,7 +189,8 @@ CORS_ALLOWED_ORIGINS = [
     FRONTEND_URL_TEST,
        
 ]
-
+"""
+CORS_ALLOW_ALL_ORIGINS = True  # dev only, never in production
 # Allow credentials (important if you send cookies or Authorization headers)
 CORS_ALLOW_CREDENTIALS = True
 
