@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Allowed hosts - Be more restrictive in production
 ALLOWED_HOSTS = ["*"]   # Change to specific domains in production (e.g., ['api.thesuite.com'])
@@ -99,11 +99,13 @@ if DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": os.environ.get("SQLITE_DB_PATH", BASE_DIR / "db.sqlite3"),
         }
     }
 else:
     print("PRODUCTION MODE")
+    DATABASE_URL="postgres://backend_rippling_butterfly_2765:lyhQtiniWvHjagf@backend-rippling-butterfly-2765-db.flycast:5432/backend_rippling_butterfly_2765?sslmode=disable"
+
     DB_PASSWORD = os.environ.get("DB_PASSWORD")
    
     
@@ -112,10 +114,10 @@ else:
     
     DATABASES = {
         'default': dj_database_url.config(
-            default=f"postgresql://postgres.ljsoxykpwcejcdrsjkzw:{DB_PASSWORD}@aws-0-eu-west-1.pooler.supabase.com:6543/postgres"
+            default=f"{DATABASE_URL}"
         )
     }
-
+#postgresql://postgres.srbmrjvxgjjzwzpqylen:{DB_PASSWORD}@aws-1-eu-west-1.pooler.supabase.com:6543/postgres
 # ============================
 # AUTHENTICATION & USERS
 # ============================
@@ -226,8 +228,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD =os.environ.get("EMAIL_HOST_PASSWORD")
-
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "TheSuite <noreply@Thesuite.com>"   # More professional
 
 # ============================
@@ -235,7 +236,6 @@ DEFAULT_FROM_EMAIL = "TheSuite <noreply@Thesuite.com>"   # More professional
 # ============================
 
 PAYSTACK_SECRET_KEY = os.environ.get("PAYSTACK_SECRET_KEY")
-"sk_test_1227fdebab940274c36e42da3b78d7d8b8ae9ca7"
 
 # ============================
 # OTHER USEFUL SETTINGS

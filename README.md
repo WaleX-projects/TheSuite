@@ -67,6 +67,18 @@ Live demo: https://thesuit.netlify.app/
 
 ## ⚡ Installation
 
+### Run with Docker
+
+From the repository root, build and start both services:
+
+```bash
+docker compose up --build
+```
+
+Open the frontend at [http://localhost:8080](http://localhost:8080). The Django API is available at [http://localhost:8000/api/](http://localhost:8000/api/). SQLite data, face-recognition data, and downloaded face models are stored in Docker volumes.
+
+This Compose setup uses Django's development server and SQLite; it is intended for local development, not production.
+
 ### Clone Repository
 
 ```bash
