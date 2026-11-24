@@ -104,8 +104,7 @@ if DEBUG:
     }
 else:
     print("PRODUCTION MODE")
-    DATABASE_URL="postgres://backend_rippling_butterfly_2765:lyhQtiniWvHjagf@backend-rippling-butterfly-2765-db.flycast:5432/backend_rippling_butterfly_2765?sslmode=disable"
-
+    DATABASE_URL = os.environ.get("DATABASE_URL")
     DB_PASSWORD = os.environ.get("DB_PASSWORD")
    
     
